@@ -8,7 +8,7 @@ include('DatabaseGroups.php');
 $db = new Database(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DATABASE);
 
 $users = new DatabaseUsers();
-if(isset($_POST['firstname']) && isset($_POST['lastname'])){
+if (isset($_POST['firstname']) && isset($_POST['lastname'])) {
     $users->insert($_POST['firstname'], $_POST['lastname'], $_POST['email']);
 }
 
@@ -16,19 +16,19 @@ $user_ids = [];
 echo '<h2>USERS</h2><br />';
 foreach ($users->all() as $user) {
     $user_ids[] = $user['id'];
-    echo $user['id'] . ' | ' . $user['firstname'] . ' ' .$user['lastname'] . '<br />';
+    echo $user['id'] . ' | ' . $user['firstname'] . ' ' . $user['lastname'] . '<br />';
 }
 
 echo '<h2>GROUPS</h2><br />';
 $groups = new DatabaseGroups();
-if(isset($_POST['group_name']) && isset($_POST['group_code'])){
+if (isset($_POST['group_name']) && isset($_POST['group_code'])) {
     $groups->insert($_POST['group_name'], $_POST['group_code']);
 }
 
 $group_ids = [];
 foreach ($groups->all() as $group) {
     $group_ids[] = $group['id'];
-    echo $group['id'] . ' | ' . $group['group_name'] . '(' . $group['group_code'] .')' . '<br />';
+    echo $group['id'] . ' | ' . $group['group_name'] . '(' . $group['group_code'] . ')' . '<br />';
 }
 
 $random_group_key = array_rand($group_ids, 1);
